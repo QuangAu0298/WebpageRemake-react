@@ -95,11 +95,11 @@ body {
 }
 
 .left-col {
-    width: 300px;
+    max-width: 350px;
 }
 
 .right-col {
-    width: 700px;
+    width: 650px;
 }
 
 .custom-block {

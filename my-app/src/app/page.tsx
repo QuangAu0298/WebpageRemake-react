@@ -2,7 +2,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import './style.css';
 import { Container, Navbar, Row, Col, NavLink, InputGroup, Form, Nav, Button } from "react-bootstrap";
-import React, { useState } from 'react';
 import { Search } from "react-bootstrap-icons";
 
 const DarkPillSearchBar = () => {
@@ -97,9 +96,73 @@ const SupportBanner = () => (
   </Container>
 );
 
+
+function GenerateEventsList(count: number) {
+  const list = [];
+  for (let i = 0; i < count; i++) {
+    list.push(
+        <NavLink key={i}
+          className="nav-link text-white d-flex align-items-center px-4 transition-all" 
+          href="#"
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            transition: 'background-color 0.2s ease',
+            padding: 2, margin: 1,
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)'}
+          >
+          Oct {i +1} -<span style={{color: '#ff8000'}}>Event</span>
+        </NavLink>
+    )
+  }
+  list.push(
+        <NavLink key={'more events'}
+          className="nav-link text-white d-flex align-items-center px-4 transition-all justify-content-center" 
+          href="#"
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            transition: 'background-color 0.2s ease',
+            padding: 12, margin: 6,
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)'}
+          >
+          More Events
+        </NavLink>
+    )
+  return (
+    list
+  );
+}
+
 const MiddleSection = () => (
   <Container fluid className="img-background">
     <SupportBanner />
+    <Container id="content_section" className="mx-auto">
+      <Row>
+        <Col className="left-col">
+          <Container className="custom-block rounded-1 border border-2">
+            <Row className="block-header">
+                <h5>Upcoming Events</h5>
+                <ul>
+                  {GenerateEventsList(13)}
+                </ul>
+            </Row>
+
+          </Container>
+        </Col>
+        <Col className="right-col">
+          <Container className="custom-block rounded-1 border border-2">
+            <img src="event_banner.webp"
+            alt="Promotional Event Banner"
+            className="img-fluid"
+            style={{ padding: 10}}></img>
+          </Container>
+        </Col>
+      </Row>
+
+    </Container>
   </Container>
 );
 
